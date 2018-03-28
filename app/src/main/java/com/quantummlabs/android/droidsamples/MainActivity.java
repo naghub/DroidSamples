@@ -20,17 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (RecyclerView) findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
         listView.setHasFixedSize(true);
         ListAdapter adapter = new ListAdapter(mDataset, this);
         listView.setAdapter(adapter);
         listView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setItemClickListener(new ListAdapter.ListItemClickListener() {
-            @Override
-            public void onClick(int position) {
-                Toast.makeText(MainActivity.this, mDataset[position]
-                        , Toast.LENGTH_SHORT).show();
-            }
+        adapter.setItemClickListener((position) -> {
+            Toast.makeText(MainActivity.this, mDataset[position]
+                    , Toast.LENGTH_SHORT).show();
         });
     }
 }
